@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Models\Album; // n'oublie pas !
 
 class MusicResource extends Resource
 {
@@ -19,7 +20,7 @@ class MusicResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    public static function form(Form $form): Form
+   public static function form(Form $form): Form
 {
     return $form
         ->schema([
@@ -29,8 +30,12 @@ class MusicResource extends Resource
             Forms\Components\TextInput::make('artist')
                 ->required()
                 ->maxLength(255),
-            Forms\Components\TextInput::make('album')
-                ->maxLength(255),
+            Forms\Components\Select::make('album_id') // 🔥
+                ->label('Album')
+                ->relationship('album', 'title')
+                ->searchable()
+                ->preload()
+                ->required(),
             Forms\Components\FileUpload::make('file_path')
                 ->label('Fichier MP3')
                 ->directory('musics')
@@ -45,30 +50,28 @@ class MusicResource extends Resource
         ]);
 }
 
-
-    public static function table(Table $table): Table
+public static function table(Table $table): Table
 {
     return $table
         ->columns([
             Tables\Columns\ImageColumn::make('cover_image')
                 ->label('Cover')
-                ->size(60)
-                ->circular(),
+                ->getStateUsing(fn ($record) => $record->cover_image ? asset($record->cover_image) : null)
+                ->circular()
+                ->size(60),
             Tables\Columns\TextColumn::make('title')
                 ->searchable()
                 ->sortable(),
             Tables\Columns\TextColumn::make('artist')
                 ->searchable()
                 ->sortable(),
-            Tables\Columns\TextColumn::make('album')
+            Tables\Columns\TextColumn::make('album.title') // 🔥 via relation
+                ->label('Album')
                 ->sortable(),
             Tables\Columns\TextColumn::make('created_at')
                 ->label('Ajouté le')
                 ->dateTime()
                 ->sortable(),
-        ])
-        ->filters([
-            //
         ])
         ->actions([
             Tables\Actions\EditAction::make(),
@@ -79,6 +82,7 @@ class MusicResource extends Resource
             ]),
         ]);
 }
+
 
 
     public static function getRelations(): array

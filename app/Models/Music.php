@@ -6,16 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Music extends Model
 {
-    protected $table = 'musics'; // 👈 ici tu forces le nom de la table
-
+    protected $table = 'musics'; // Nom explicite, ok si tu veux l’imposer
 
     protected $fillable = [
         'title',
         'artist',
-        'album',
+        'album_id',       // ✅ On utilise album_id pour la relation
         'file_path',
         'cover_image',
     ];
 
-
+    /**
+     * Relation avec le modèle Album
+     */
+    public function album()
+    {
+        return $this->belongsTo(Album::class);
+    }
 }
