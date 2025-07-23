@@ -86,6 +86,11 @@
         <li class="nav-item"><a href="/upload" class="nav-link text-white">⬆️ Charger</a></li>
         <li class="nav-item mt-3"><hr class="border-secondary"></li>
      @auth
+        @if(auth()->user()->is_admin)
+        <li class="nav-item">
+            <a href="/admin" class="nav-link text-warning">🛠️ Admin</a>
+        </li>
+    @endif
     <li class="nav-item">
         <form method="POST" action="{{ route('logout') }}">
             @csrf
