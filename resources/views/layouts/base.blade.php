@@ -76,16 +76,20 @@
   </nav>
 
   <!-- Sidebar desktop -->
-  <div class="d-none d-md-block position-fixed top-0 start-0 h-100 bg-dark text-white p-3" style="width: 250px;">
+<div class="d-none d-md-block position-fixed top-0 start-0 h-100 bg-dark text-white p-3" style="width: 250px;">
     <img src="/logo.png" class="img-fluid rounded mb-4" />
-    <ul class="nav flex-column">
-      <li class="nav-item"><a href="/" class="nav-link">🏠 Accueil</a></li>
-      <li class="nav-item"><a href="/musics" class="nav-link">📀 Musique</a></li>
-      <li class="nav-item"><a href="/albums" class="nav-link">📀 Albums</a></li>
-      <li class="nav-item"><a href="/upload" class="nav-link">⬆️ Charger</a></li>
-    </ul>
 
-  </div>
+    <ul class="nav flex-column">
+        <li class="nav-item"><a href="/" class="nav-link text-white">🏠 Accueil</a></li>
+        <li class="nav-item"><a href="/musics" class="nav-link text-white">🎵 Musique</a></li>
+        <li class="nav-item"><a href="/albums" class="nav-link text-white">💿 Albums</a></li>
+        <li class="nav-item"><a href="/upload" class="nav-link text-white">⬆️ Charger</a></li>
+        <li class="nav-item mt-3"><hr class="border-secondary"></li>
+        <li class="nav-item"><a href="{{ route('login') }}" class="nav-link text-white">🔐 Connexion</a></li>
+        <li class="nav-item"><a href="{{ route('register') }}" class="nav-link text-white">📝 Inscription</a></li>
+    </ul>
+</div>
+
 
   <!-- Offcanvas mobile menu -->
   <div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileMenu">
