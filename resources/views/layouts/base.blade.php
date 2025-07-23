@@ -85,16 +85,18 @@
         <li class="nav-item"><a href="/albums" class="nav-link text-white">💿 Albums</a></li>
         <li class="nav-item"><a href="/upload" class="nav-link text-white">⬆️ Charger</a></li>
         <li class="nav-item mt-3"><hr class="border-secondary"></li>
-     @auth
-        @if(auth()->user()->is_admin)
+
+@auth
+    @if(auth()->user()->is_admin)
         <li class="nav-item">
             <a href="/admin" class="nav-link text-warning">🛠️ Admin</a>
         </li>
     @endif
+
     <li class="nav-item">
-        <form method="POST" action="{{ route('logout') }}">
+        <form method="POST" action="{{ route('logout') }}" class="m-0 p-0">
             @csrf
-            <button type="submit" class="nav-link text-white btn btn-link border-0 bg-transparent p-0 m-0">
+            <button type="submit" class="nav-link text-white btn btn-link border-0 bg-transparent p-0 m-0 text-start">
                 🚪 Déconnexion
             </button>
         </form>
@@ -107,6 +109,7 @@
         <a href="{{ route('register') }}" class="nav-link text-white">📝 Inscription</a>
     </li>
 @endauth
+
 
     </ul>
 </div>
