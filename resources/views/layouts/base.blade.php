@@ -85,11 +85,26 @@
         <li class="nav-item"><a href="/albums" class="nav-link text-white">💿 Albums</a></li>
         <li class="nav-item"><a href="/upload" class="nav-link text-white">⬆️ Charger</a></li>
         <li class="nav-item mt-3"><hr class="border-secondary"></li>
-        <li class="nav-item"><a href="{{ route('login') }}" class="nav-link text-white">🔐 Connexion</a></li>
-        <li class="nav-item"><a href="{{ route('register') }}" class="nav-link text-white">📝 Inscription</a></li>
+     @auth
+    <li class="nav-item">
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="nav-link text-white btn btn-link border-0 bg-transparent p-0 m-0">
+                🚪 Déconnexion
+            </button>
+        </form>
+    </li>
+@else
+    <li class="nav-item">
+        <a href="{{ route('login') }}" class="nav-link text-white">🔐 Connexion</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ route('register') }}" class="nav-link text-white">📝 Inscription</a>
+    </li>
+@endauth
+
     </ul>
 </div>
-
 
   <!-- Offcanvas mobile menu -->
   <div class="offcanvas offcanvas-start d-md-none" tabindex="-1" id="mobileMenu">
