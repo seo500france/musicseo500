@@ -14,16 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('home');
-});
+use App\Http\Controllers\MusicController;
+use App\Http\Controllers\AlbumController;
+use App\Http\Controllers\HomeController;
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-use App\Http\Controllers\MusicController;
-use App\Http\Controllers\AlbumController;
 
 Route::get('/upload', [MusicController::class, 'create'])->name('music.create');
 Route::post('/upload', [MusicController::class, 'store'])->name('music.store');

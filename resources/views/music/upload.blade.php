@@ -7,6 +7,10 @@
     <div class="alert alert-success">{{ session('album_success') }}</div>
 @endif
 
+@if(session('error'))
+    <div class="alert alert-danger">{{ session('error') }}</div>
+@endif
+
 <form action="{{ route('album.store') }}" method="POST" enctype="multipart/form-data" class="mb-4">
     @csrf
     <input type="text" name="title" placeholder="Nom de l'album" class="form-control mb-2" required>
