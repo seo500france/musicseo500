@@ -76,4 +76,4 @@ Vous pouvez modifier :
 
 Crédits
 
-Ce projet est conçu et maintenu par seo500france.com — expert en développement web et SEO haute performance.
+Ce projet est conçu et maintenu par https://www.seo500france.com/ — expert en développement web et SEO haute performance.
