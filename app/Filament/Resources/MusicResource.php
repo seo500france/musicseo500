@@ -17,7 +17,7 @@ use App\Models\Album; // n'oublie pas !
 class MusicResource extends Resource
 {
     protected static ?string $model = Music::class;
-
+    protected static ?int $navigationSort = 1; // 🔢 ordre d’affichage
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
    public static function form(Form $form): Form

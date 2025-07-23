@@ -15,7 +15,7 @@ class AlbumResource extends Resource
     protected static ?string $model = Album::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-musical-note'; // valide
-    protected static ?string $navigationGroup = 'Musique';
+    protected static ?int $navigationSort = 2; // 🔢 ordre d’affichage
 
     public static function form(Form $form): Form
     {
