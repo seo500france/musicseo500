@@ -14,6 +14,7 @@ class Music extends Model
         'album_id',       // ✅ On utilise album_id pour la relation
         'file_path',
         'cover_image',
+        'user_id',
     ];
 
     /**
@@ -23,4 +24,10 @@ class Music extends Model
     {
         return $this->belongsTo(Album::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

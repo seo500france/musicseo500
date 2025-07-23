@@ -17,7 +17,7 @@ use App\Models\Album; // n'oublie pas !
 class MusicResource extends Resource
 {
     protected static ?string $model = Music::class;
-    protected static ?int $navigationSort = 1; // 🔢 ordre d’affichage
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
    public static function form(Form $form): Form
@@ -40,6 +40,11 @@ class MusicResource extends Resource
                 ->label('Fichier MP3')
                 ->directory('musics')
                 ->acceptedFileTypes(['audio/mpeg', 'audio/mp3'])
+                ->required(),
+                    // 👇 Ajouté ici dans le form
+            Forms\Components\Hidden::make('user_id')
+                ->default(fn () => auth()->id())
+                ->dehydrated(true)
                 ->required(),
         ]);
 }

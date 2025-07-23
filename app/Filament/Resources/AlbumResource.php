@@ -9,6 +9,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms\Components\Hidden;
 
 class AlbumResource extends Resource
 {
@@ -31,6 +32,9 @@ class AlbumResource extends Resource
                     ->image()
                     ->maxSize(2048)
                     ->visibility('public'),
+                    Forms\Components\Hidden::make('user_id')
+    ->default(auth()->id())
+    ->dehydrated(true),
             ]);
     }
 
@@ -43,6 +47,10 @@ class AlbumResource extends Resource
     ->getStateUsing(fn ($record) => asset($record->cover)) // 🔥 force le src
     ->circular()
     ->size(60),
+    Tables\Columns\TextColumn::make('user.name')
+    ->label('Auteur')
+    ->sortable()
+    ->searchable(),
                 Tables\Columns\TextColumn::make('title')
                     ->label('Nom')
                     ->searchable()

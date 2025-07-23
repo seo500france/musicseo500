@@ -9,10 +9,16 @@ class Album extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'cover'];
+    protected $fillable = ['title', 'cover', 'user_id'];
 
     public function musics()
     {
         return $this->hasMany(Music::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

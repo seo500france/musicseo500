@@ -33,6 +33,16 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function albums()
+    {
+        return $this->hasMany(Album::class);
+    }
+
+    public function musics()
+    {
+        return $this->hasMany(Music::class);
+    }
+
     /**
      * The attributes that should be cast.
      *

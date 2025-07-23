@@ -7,9 +7,6 @@
         <p class="lead text-secondary">
             Marre de payer Spotify ? Crée ta propre appli musicale 100% gratuite, open-source et sans pub !
         </p>
-        <a href="{{ route('music.create') }}" class="btn btn-success btn-lg mt-3">
-            ⬆️ Uploader une musique
-        </a>
     </div>
 
     @if(session('success'))
