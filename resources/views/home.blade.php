@@ -48,7 +48,7 @@
             <div class="col-md-3 mb-4">
                 <div class="card bg-dark text-white">
                     @if($album->cover)
-                        <img src="{{ asset('covers/' . $album->cover) }}" class="card-img-top" alt="{{ $album->title }}">
+                        <img src="{{ asset($album->cover) }}" class="card-img-top" alt="{{ $album->title }}">
                     @endif
                     <div class="card-body">
                         <h5 class="card-title">{{ $album->title }}</h5>

@@ -18,6 +18,16 @@ use App\Http\Controllers\MusicController;
 use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\HomeController;
 
+
+Route::get('/musics/{id}/edit', [MusicController::class, 'edit'])->name('music.edit');
+Route::post('/musics/{id}/update', [MusicController::class, 'update'])->name('music.update');
+Route::delete('/musics/{id}/delete', [MusicController::class, 'destroy'])->name('music.destroy');
+
+Route::get('/albums', [AlbumController::class, 'index'])->name('albums.index');
+Route::get('/albums/{id}/edit', [AlbumController::class, 'edit'])->name('albums.edit');
+Route::post('/albums/{id}/update', [AlbumController::class, 'update'])->name('albums.update');
+
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 

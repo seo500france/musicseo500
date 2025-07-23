@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MusicSEO500</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
   <style>
     body {
       background-color: #000;
@@ -76,6 +81,7 @@
     <ul class="nav flex-column">
       <li class="nav-item"><a href="/" class="nav-link">🏠 Accueil</a></li>
       <li class="nav-item"><a href="/musics" class="nav-link">📀 Musique</a></li>
+      <li class="nav-item"><a href="/albums" class="nav-link">📀 Albums</a></li>
       <li class="nav-item"><a href="/upload" class="nav-link">⬆️ Charger</a></li>
     </ul>
 

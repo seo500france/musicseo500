@@ -78,4 +78,71 @@ class MusicController extends Controller
 
         return view('music.index', compact('musics', 'albums'));
     }
+
+    public function edit($id)
+{
+    $music = DB::table('musics')->find($id);
+    $albums = DB::table('albums')->get();
+
+    if (!$music) {
+        return redirect()->route('music.index')->with('error', 'Musique introuvable');
+    }
+
+    return view('music.edit', compact('music', 'albums'));
+}
+
+public function update(Request $request, $id)
+{
+    $request->validate([
+        'title'     => 'required|string',
+        'artist'    => 'required|string',
+        'album_id'  => 'nullable|integer|exists:albums,id',
+        'music'     => 'nullable|file|mimes:mp3,wav,ogg|max:51200',
+    ]);
+
+    $music = DB::table('musics')->find($id);
+
+    if (!$music) {
+        return redirect()->route('music.index')->with('error', 'Musique introuvable');
+    }
+
+    $filePath = $music->file_path;
+
+    // Si un nouveau fichier est envoyé, on le remplace
+    if ($request->hasFile('music')) {
+        $file = $request->file('music');
+        $filename = Str::slug($request->title) . '-' . time() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('musics'), $filename);
+        $filePath = 'musics/' . $filename;
+    }
+
+    DB::table('musics')->where('id', $id)->update([
+        'title'     => $request->title,
+        'artist'    => $request->artist,
+        'album_id'  => $request->album_id,
+        'file_path' => $filePath,
+        'updated_at'=> now(),
+    ]);
+
+    return redirect()->route('music.index')->with('success', 'Musique mise à jour !');
+}
+
+public function destroy($id)
+{
+    $music = DB::table('musics')->find($id);
+
+    if (!$music) {
+        return redirect()->route('music.index')->with('error', 'Musique introuvable');
+    }
+
+    // Optionnel : supprimer le fichier du disque
+    if ($music->file_path && file_exists(public_path($music->file_path))) {
+        unlink(public_path($music->file_path));
+    }
+
+    DB::table('musics')->where('id', $id)->delete();
+
+    return redirect()->route('music.index')->with('success', 'Musique supprimée.');
+}
+
 }
