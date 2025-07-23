@@ -41,12 +41,6 @@ class MusicResource extends Resource
                 ->directory('musics')
                 ->acceptedFileTypes(['audio/mpeg', 'audio/mp3'])
                 ->required(),
-            Forms\Components\FileUpload::make('cover_image')
-                ->label('Pochette')
-                ->directory('covers')
-                ->image()
-                ->imageEditor()
-                ->maxSize(2048),
         ]);
 }
 
